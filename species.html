@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Species Detail - Scottish Mammal Observations</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="species-page">
+    <div class="overlay"></div>
+    <main class="detail-view">
+        <header>
+            <h1>Scottish Mammal Observations</h1>
+        </header>
+
+        <section class="species-content">
+            <div class="species-info" id="species-info">
+                <!-- Data will be injected here -->
+            </div>
+            
+            <div class="species-media">
+                <div class="species-image-large">
+                    <img id="species-img" src="" alt="">
+                </div>
+                <div class="species-nav-controls">
+                    <div class="nav-arrow" id="prev-btn">
+                        <img src="images/left.png" alt="Previous">
+                    </div>
+                    <h2 class="species-title" id="species-name"></h2>
+                    <div class="nav-arrow" id="next-btn">
+                        <img src="images/right.png" alt="Next">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <a href="index.html" class="back-to-home">
+            <div class="back-arrow">
+                <img src="images/homepage arrow.png" alt="Home">
+            </div>
+            <span>Back To Home Page</span>
+        </a>
+    </main>
+
+    <script>
+        const speciesData = {
+            'squirrel': {
+                name: 'Red squirrel',
+                image: 'images/species/red squirrel - specie.png',
+                description: 'they are found in the forest and woodland habitat.',
+                observations: 'in wood land and pine forest they are active during the day.',
+                location: 'Galloway Forest Park'
+            },
+            'otter': {
+                name: 'European Otter',
+                image: 'images/species/European Otter - specie.png',
+                description: 'Semi - Aquatic Mammal found near rivers and in Scotland.',
+                observations: '2 march, 2026 near a Loch at Isle of Skye.',
+                location: 'Isle of Skye'
+            },
+            'deer': {
+                name: 'Red deer',
+                image: 'images/species/red deer - specie.png',
+                description: 'This is the one of the largest Mammals in Scotland and they are normal seen in the Highlands and forest.',
+                observations: 'seen moving in groups called herds 5 march at highland forest.',
+                location: 'Cairngorms National Park'
+            },
+            'cow': {
+                name: 'Highland cow',
+                image: 'images/species/highland cow - specie.png',
+                description: 'this is the famous animal in Scotland .normally seen in rural land scape.',
+                observations: 'Grazing in open fields. Living in small herds.',
+                location: 'Isle of Skye, Scottish Highlands, Cairngorms National Park'
+            }
+        };
+
+        const speciesOrder = ['cow', 'squirrel', 'deer', 'otter'];
+
+        function getSpeciesId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id') || 'squirrel';
+        }
+
+        function renderSpecies(id) {
+            const data = speciesData[id];
+            if (!data) return;
+
+            document.getElementById('species-name').textContent = data.name;
+            document.getElementById('species-img').src = data.image;
+            document.getElementById('species-img').alt = data.name;
+
+            const infoContainer = document.getElementById('species-info');
+            infoContainer.innerHTML = `
+                <div class="info-section">
+                    <h2>Description :</h2>
+                    <p>${data.description}</p>
+                </div>
+                <div class="info-section">
+                    <h2>Observations :</h2>
+                    <p>${data.observations}</p>
+                </div>
+                <div class="info-section">
+                    <h2>Location :</h2>
+                    <p>${data.location}</p>
+                </div>
+            `;
+
+            // Update nav buttons
+            const currentIndex = speciesOrder.indexOf(id);
+            const prevIndex = (currentIndex - 1 + speciesOrder.length) % speciesOrder.length;
+            const nextIndex = (currentIndex + 1) % speciesOrder.length;
+
+            document.getElementById('prev-btn').onclick = () => {
+                window.location.href = `species.html?id=${speciesOrder[prevIndex]}`;
+            };
+            document.getElementById('next-btn').onclick = () => {
+                window.location.href = `species.html?id=${speciesOrder[nextIndex]}`;
+            };
+        }
+
+        renderSpecies(getSpeciesId());
+    </script>
+</body>
+</html>
