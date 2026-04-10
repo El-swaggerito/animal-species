@@ -1,42 +1,63 @@
+<!-- 
+  File: search.html
+  Purpose: Form for reporting new mammal sightings.
+  Functionality: Provides a structured form for users to submit sighting information:
+    - User Email Address
+    - Name of the Mammal observed
+    - Location of the sighting
+    - Additional notes
+  Includes bottom navigation controls to return to the home page.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Mammals Sightings - Scottish Mammal Observations</title>
+    <!-- Link to external styling -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="search-page">
+    <!-- Overlay placeholder -->
     <div class="overlay"></div>
     <main class="search-container">
+        <!-- Main page heading -->
         <h1>New mammals sightings</h1>
 
+        <!-- Sighting Report Form -->
         <form class="search-form">
+            <!-- Email Input Field -->
             <div class="form-group">
                 <label for="email">Email Address :</label>
                 <input type="email" id="email" name="email">
             </div>
 
+            <!-- Mammal Name Input Field -->
             <div class="form-group">
                 <label for="mammal-name">Name Of Mammal :</label>
                 <input type="text" id="mammal-name" name="mammal-name">
             </div>
 
+            <!-- Location Input Field -->
             <div class="form-group">
                 <label for="location">Mammal's Location :</label>
                 <input type="text" id="location" name="location">
             </div>
 
+            <!-- Notes Textarea Field -->
             <div class="form-group">
                 <label for="note">Note :</label>
                 <textarea id="note" name="note"></textarea>
             </div>
         </form>
 
+        <!-- Bottom Page Navigation Controls -->
         <nav class="page-nav-controls">
+            <!-- Back to Home Page link -->
             <a href="index.html" class="page-nav-btn">
                 <img src="images/page prev.png" alt="Previous page">
             </a>
+            <!-- Forward navigation placeholder -->
             <a href="#" class="page-nav-btn">
                 <img src="images/page next.png" alt="Next page">
             </a>

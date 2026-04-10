@@ -1,17 +1,31 @@
+<!-- 
+  File: sightings.html
+  Purpose: Gallery page displaying animal sightings in various Scottish locations.
+  Functionality: Displays a grid of sighting cards, each featuring:
+    - Animal Name (top)
+    - Representative image of the habitat/sighting
+    - Location Name (bottom)
+  Includes navigation controls at the bottom to return to the home page.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sightings - Scottish Mammal Observations</title>
+    <!-- External stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="sightings-page">
+    <!-- Overlay for potential visual enhancements -->
     <div class="overlay"></div>
     <main class="sightings-container">
+        <!-- Main page header -->
         <h1>Sightings</h1>
 
+        <!-- Sightings Cards Grid: Uses Flexbox for responsive layout -->
         <section class="sighting-grid">
+            <!-- Red Deer Sighting -->
             <div class="sighting-card">
                 <span class="animal-name-top">Red deer</span>
                 <div class="sighting-image-container">
@@ -20,6 +34,7 @@
                 <span class="location-name-bottom">Highlands</span>
             </div>
 
+            <!-- Red Squirrel Sighting -->
             <div class="sighting-card">
                 <span class="animal-name-top">Red Squirrel</span>
                 <div class="sighting-image-container">
@@ -28,6 +43,7 @@
                 <span class="location-name-bottom">Cairngorms</span>
             </div>
 
+            <!-- European Otter Sighting -->
             <div class="sighting-card">
                 <span class="animal-name-top">European Otter</span>
                 <div class="sighting-image-container">
@@ -36,6 +52,7 @@
                 <span class="location-name-bottom">River Spey</span>
             </div>
 
+            <!-- Highland Cow Sighting -->
             <div class="sighting-card">
                 <span class="animal-name-top">Highland Cow</span>
                 <div class="sighting-image-container">
@@ -45,10 +62,13 @@
             </div>
         </section>
 
+        <!-- Page Navigation: Home Page and Next placeholder -->
         <nav class="page-nav-controls">
+            <!-- Back to Home Page link -->
             <a href="index.html" class="page-nav-btn">
                 <img src="images/page prev.png" alt="Previous page">
             </a>
+            <!-- Placeholder for forward navigation -->
             <a href="#" class="page-nav-btn">
                 <img src="images/page next.png" alt="Next page">
             </a>

@@ -1,51 +1,50 @@
+<!-- 
+  File: index.html
+  Purpose: Main entry point for the Scottish Mammal Observations website.
+  Functionality: Provides a high-level navigation grid to different sections of the application:
+    - Details (Species Detail)
+    - Sightings Gallery
+    - Map View
+    - Search/Reporting Page
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scottish Mammal Observations</title>
+    <!-- Main external stylesheet for project-wide styles -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="home-page">
+    <!-- Background overlay for visual effects (currently hidden in CSS) -->
     <div class="overlay"></div>
     <main>
+        <!-- Application Header -->
         <header>
             <h1>Scottish Mammal Observations</h1>
         </header>
 
+        <!-- Main Navigation Grid: Text-only links as requested -->
         <section class="nav-grid">
+            <!-- Link to Species Detail page -->
             <a href="species.html" class="nav-item">
-                <span class="nav-label desktop-label">Details</span>
-                <span class="nav-label mobile-label">Species</span>
-                <div class="image-container">
-                    <img src="images/highland cow - homepage.png" alt="Highland cow">
-                </div>
-                <span class="animal-name">Highland cow</span>
+                <span class="nav-label">Details</span>
             </a>
 
+            <!-- Link to Sightings Gallery page -->
             <a href="sightings.html" class="nav-item">
                 <span class="nav-label">Sightings</span>
-                <div class="image-container">
-                    <img src="images/red squirrel - homepage.png" alt="Red squirrel">
-                </div>
-                <span class="animal-name">Red squirrel</span>
             </a>
 
+            <!-- Link to Map View page -->
             <a href="map-view.html" class="nav-item">
-                <span class="nav-label desktop-label">Map View</span>
-                <span class="nav-label mobile-label">Map</span>
-                <div class="image-container">
-                    <img src="images/red deer - homepage.png" alt="Red deer">
-                </div>
-                <span class="animal-name">Red deer</span>
+                <span class="nav-label">Map View</span>
             </a>
 
+            <!-- Link to Search/New Sighting page -->
             <a href="search.html" class="nav-item">
                 <span class="nav-label">Search</span>
-                <div class="image-container">
-                    <img src="images/european otter - homepage.png" alt="European Otter">
-                </div>
-                <span class="animal-name">European Otter</span>
             </a>
         </section>
     </main>

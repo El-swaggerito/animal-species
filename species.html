@@ -1,27 +1,42 @@
+<!-- 
+  File: species.html
+  Purpose: Detail view for individual mammal species.
+  Functionality: 
+    - Uses JavaScript to dynamically load and display species data based on URL parameters.
+    - Displays species name, image, description, observations, and location.
+    - Provides a carousel-like navigation to cycle through different species.
+    - Links back to the Home Page.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Species Detail - Scottish Mammal Observations</title>
+    <!-- External stylesheet for common styles -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="species-page">
+    <!-- Visual background overlay -->
     <div class="overlay"></div>
     <main class="detail-view">
         <header>
             <h1>Scottish Mammal Observations</h1>
         </header>
 
+        <!-- Main Content Section: Left side for info, Right side for media/nav -->
         <section class="species-content">
+            <!-- Container for dynamically injected species information -->
             <div class="species-info" id="species-info">
-                <!-- Data will be injected here -->
+                <!-- Data will be injected here via renderSpecies() -->
             </div>
             
+            <!-- Media Section: Large image and carousel controls -->
             <div class="species-media">
                 <div class="species-image-large">
                     <img id="species-img" src="" alt="">
                 </div>
+                <!-- Carousel Navigation Controls -->
                 <div class="species-nav-controls">
                     <div class="nav-arrow" id="prev-btn">
                         <img src="images/left.png" alt="Previous">
@@ -34,6 +49,7 @@
             </div>
         </section>
 
+        <!-- Navigation back to Home Page -->
         <a href="index.html" class="back-to-home">
             <div class="back-arrow">
                 <img src="images/homepage arrow.png" alt="Home">
@@ -43,6 +59,10 @@
     </main>
 
     <script>
+        /**
+         * Data store for all mammal species supported by the application.
+         * Keys match the 'id' URL parameter.
+         */
         const speciesData = {
             'squirrel': {
                 name: 'Red squirrel',
@@ -74,21 +94,36 @@
             }
         };
 
+        /**
+         * The order in which species appear in the carousel navigation.
+         */
         const speciesOrder = ['cow', 'squirrel', 'deer', 'otter'];
 
+        /**
+         * Extracts the species ID from the URL search parameters.
+         * Defaults to 'squirrel' if no ID is provided or found.
+         * @returns {string} The species ID (e.g., 'cow', 'deer').
+         */
         function getSpeciesId() {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get('id') || 'squirrel';
         }
 
+        /**
+         * Renders the species data onto the page.
+         * Updates images, text content, and navigation links.
+         * @param {string} id - The ID of the species to render.
+         */
         function renderSpecies(id) {
             const data = speciesData[id];
             if (!data) return;
 
+            // Update header and media elements
             document.getElementById('species-name').textContent = data.name;
             document.getElementById('species-img').src = data.image;
             document.getElementById('species-img').alt = data.name;
 
+            // Build and inject the info section HTML
             const infoContainer = document.getElementById('species-info');
             infoContainer.innerHTML = `
                 <div class="info-section">
@@ -105,11 +140,12 @@
                 </div>
             `;
 
-            // Update nav buttons
+            // Calculate carousel logic: loop around at both ends
             const currentIndex = speciesOrder.indexOf(id);
             const prevIndex = (currentIndex - 1 + speciesOrder.length) % speciesOrder.length;
             const nextIndex = (currentIndex + 1) % speciesOrder.length;
 
+            // Attach click event handlers for the navigation arrows
             document.getElementById('prev-btn').onclick = () => {
                 window.location.href = `species.html?id=${speciesOrder[prevIndex]}`;
             };
@@ -118,6 +154,7 @@
             };
         }
 
+        // Initialize the page by rendering the requested species
         renderSpecies(getSpeciesId());
     </script>
 </body>

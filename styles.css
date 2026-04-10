@@ -1,3 +1,17 @@
+/**
+ * File: styles.css
+ * Purpose: Central stylesheet for the Scottish Mammal Observations project.
+ * Architecture:
+ * - Uses CSS Variables for theme colors and typography.
+ * - Employs a combination of Flexbox and Grid for responsive layouts.
+ * - Implements mobile-first and desktop-first media queries to match pixel-perfect designs.
+ * - Handles distinct page themes (Home, Species, Map, Sightings, Search).
+ */
+
+/* ==========================================================================
+   Variables & Base Reset
+   ========================================================================== */
+
 :root {
     --primary-cyan: #00E5FF;
     --accent-pink: #F28C8C;
@@ -20,8 +34,12 @@ body {
     align-items: flex-start;
     color: var(--text-white);
     overflow-x: hidden;
-    background: #000; /* Fallback */
+    background: #000; /* Fallback background color */
 }
+
+/* ==========================================================================
+   Global Background & Overlay
+   ========================================================================== */
 
 .home-page, .species-page, .map-view-page, .sightings-page, .search-page {
     background: url('images/background-img.png') no-repeat center center fixed;
@@ -29,7 +47,110 @@ body {
     position: relative;
 }
 
-/* Search Page Styles */
+/* Specific background for mobile devices to ensure better composition */
+@media (max-width: 480px) {
+    .home-page, .species-page, .map-view-page, .sightings-page, .search-page {
+        background-image: url('images/mobile-bg.png');
+    }
+}
+
+/* Hidden by default, can be toggled for dark mode or specific page effects */
+.overlay {
+    display: none;
+}
+
+/* ==========================================================================
+   Layout - Main Container
+   ========================================================================== */
+
+main {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+/* ==========================================================================
+   Home Page Components
+   ========================================================================== */
+
+header h1 {
+    color: var(--primary-cyan);
+    font-size: 3.5rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 120px;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+}
+
+.nav-grid {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 40px;
+    padding: 0 60px;
+    margin-top: 50px;
+}
+
+.nav-item {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.nav-item:hover {
+    transform: translateY(-5px);
+    background: rgba(0, 229, 255, 0.1);
+}
+
+.nav-item:active {
+    transform: scale(0.95);
+}
+
+.nav-label {
+    color: var(--primary-cyan);
+    font-size: 2.2rem;
+    font-weight: 400;
+    text-shadow: 0 0 5px rgba(0, 229, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover .nav-label {
+    text-shadow: 0 0 15px var(--primary-cyan);
+    color: #fff;
+}
+
+.image-container {
+    width: 220px;
+    height: 220px;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.animal-name {
+    color: var(--accent-pink);
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+/* ==========================================================================
+   Search / Form Page Styles
+   ========================================================================== */
+
 .search-container {
     width: 100%;
     max-width: 1200px;
@@ -56,6 +177,7 @@ body {
     margin-bottom: 80px;
 }
 
+/* Two-column layout for labels and inputs on desktop */
 .form-group {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -73,7 +195,7 @@ body {
 .form-group input, 
 .form-group textarea {
     width: 100%;
-    background: #D9D9D9;
+    background: #D9D9D9; /* Light grey input background per design */
     border: none;
     padding: 15px;
     font-size: 1.2rem;
@@ -86,29 +208,10 @@ body {
     resize: none;
 }
 
-/* Mobile Responsive Search */
-@media (max-width: 768px) {
-    .form-group {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
+/* ==========================================================================
+   Sightings Gallery Styles
+   ========================================================================== */
 
-    .form-group label {
-        text-align: left;
-        font-size: 1.4rem;
-    }
-
-    .search-container h1 {
-        font-size: 2.2rem;
-        margin-bottom: 40px;
-    }
-
-    .search-form {
-        gap: 25px;
-    }
-}
-
-/* Sightings Page Specific Styles */
 .sightings-container {
     max-width: 1400px;
     padding: 60px 20px;
@@ -138,12 +241,7 @@ body {
     gap: 15px;
 }
 
-.sighting-card .animal-name-top {
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: var(--text-white);
-}
-
+.sighting-card .animal-name-top,
 .sighting-card .location-name-bottom {
     font-size: 1.5rem;
     font-weight: 300;
@@ -162,6 +260,10 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
+/* ==========================================================================
+   Page Navigation Controls
+   ========================================================================== */
 
 .page-nav-controls {
     display: flex;
@@ -187,63 +289,10 @@ body {
     height: 100%;
 }
 
-/* Responsive Scaling for Sightings */
-@media (max-width: 1100px) {
-    .sighting-grid {
-        gap: 20px;
-    }
-    
-    .sighting-image-container {
-        width: 180px;
-        height: 320px;
-    }
-}
+/* ==========================================================================
+   Species Detail View Styles
+   ========================================================================== */
 
-@media (max-width: 768px) {
-    .sighting-grid {
-        flex-wrap: wrap;
-        gap: 30px;
-    }
-
-    .sighting-image-container {
-        width: 160px;
-        height: 280px;
-    }
-}
-
-@media (max-width: 480px) {
-    .sightings-container h1 {
-        font-size: 2.5rem;
-        margin-bottom: 40px;
-    }
-
-    .sighting-grid {
-        flex-direction: column;
-        align-items: center;
-        gap: 40px;
-    }
-
-    .sighting-image-container {
-        width: 240px;
-        height: 400px;
-    }
-
-    .page-nav-controls {
-        padding: 0 20px;
-    }
-
-    .page-nav-btn {
-        width: 60px;
-        height: 45px;
-    }
-}
-
-/* Dark effect removed as requested */
-.overlay {
-    display: none;
-}
-
-/* Detail View Styles */
 .detail-view {
     max-width: 1000px;
     padding: 80px 20px;
@@ -337,205 +386,6 @@ body {
     font-weight: 300;
 }
 
-/* Responsive Scaling for Detail View */
-@media (max-width: 900px) {
-    .species-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .detail-view {
-        padding: 40px 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .detail-header h1 {
-        font-size: 2.5rem;
-    }
-
-    .species-image-large {
-        border-radius: 20px;
-    }
-
-    .info-label {
-        font-size: 1.25rem;
-    }
-
-    .meta-value {
-        font-size: 1.2rem;
-    }
-}
-
-main {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1200px;
-    padding: 100px 20px;
-    text-align: center;
-}
-
-header h1 {
-    color: var(--primary-cyan);
-    font-size: 3.5rem;
-    font-weight: 400;
-    letter-spacing: 1px;
-    margin-bottom: 120px;
-    text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
-}
-
-.nav-grid {
-    display: flex;
-    justify-content: space-evenly;
-    gap: 40px;
-    padding: 0 60px;
-}
-
-.nav-item {
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    transition: all 0.3s ease;
-}
-
-.nav-item:hover {
-    transform: scale(1.05);
-}
-
-.nav-item:hover .image-container {
-    box-shadow: 0 0 25px var(--primary-cyan);
-}
-
-.nav-label {
-    color: var(--primary-cyan);
-    font-size: 1.8rem;
-    font-weight: 400;
-}
-
-/* Sightings Page Styles */
-.sightings-page {
-    text-align: center;
-}
-
-.sightings-header {
-    width: 100%;
-    max-width: 1400px;
-    padding: 40px 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-}
-
-.sightings-header h1 {
-    font-size: 3.5rem;
-    font-weight: 400;
-    margin-bottom: 20px;
-}
-
-.maps-grid {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-    padding: 60px 20px;
-    width: 100%;
-}
-
-.map-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.map-container {
-    width: 280px;
-    height: 280px;
-    border-radius: 60px;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-    transition: transform 0.3s ease;
-}
-
-.map-item:hover .map-container {
-    transform: scale(1.05);
-}
-
-.map-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.map-label {
-    font-size: 1.4rem;
-    font-weight: 300;
-    color: var(--text-white);
-}
-
-.bottom-controls {
-    width: 100%;
-    max-width: 1400px;
-    padding: 0 60px 60px;
-    text-align: left;
-}
-
-.bottom-back-btn {
-    display: inline-block;
-    width: 60px;
-    height: 60px;
-    transition: transform 0.2s ease;
-}
-
-.bottom-back-btn:hover {
-    transform: scale(1.1);
-}
-
-.bottom-back-btn img {
-    width: 100%;
-    height: 100%;
-}
-
-/* Mobile Responsive Sightings */
-@media (max-width: 480px) {
-    .sightings-header {
-        padding: 40px 20px;
-    }
-
-    .sightings-header h1 {
-        font-size: 2.5rem;
-    }
-
-    .maps-grid {
-        flex-direction: column;
-        gap: 40px;
-        padding: 20px;
-    }
-
-    .map-container {
-        width: 220px;
-        height: 220px;
-        border-radius: 110px;
-    }
-
-    .map-label {
-        font-size: 1.1rem;
-    }
-
-    .bottom-controls {
-        padding: 20px;
-    }
-
-    .bottom-back-btn {
-        width: 45px;
-        height: 45px;
-    }
-}
-
-
 /* Map View Styles */
 .map-view-container {
     max-width: 1400px;
@@ -601,49 +451,148 @@ header h1 {
     object-fit: cover;
 }
 
-.map-nav-controls {
+/* Regional Map Grid (Detailed View) */
+.sightings-header {
+    width: 100%;
+    max-width: 1400px;
+    padding: 40px 60px;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    position: relative;
+}
+
+.sightings-header h1 {
+    font-size: 3.5rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.maps-grid {
+    display: flex;
     justify-content: center;
-    gap: 150px;
+    gap: 60px;
+    padding: 60px 20px;
     width: 100%;
-    margin-bottom: 60px;
 }
 
-.nav-arrow {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
+.map-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
-.nav-arrow:hover {
-    transform: scale(1.1);
+.map-container {
+    width: 280px;
+    height: 280px;
+    border-radius: 60px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
 }
 
-.nav-arrow img {
-    width: 100%;
-    height: 100%;
+.map-item:hover .map-container {
+    transform: scale(1.05);
 }
 
-.bottom-back-btn {
-    align-self: flex-start;
-    width: 60px;
-    height: 60px;
-    transition: transform 0.2s ease;
-}
-
-.bottom-back-btn:hover {
-    transform: scale(1.1);
-}
-
-.bottom-back-btn img {
+.map-container img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
-/* Mobile Responsive Map View */
+.map-label {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--text-white);
+}
+
+.bottom-controls {
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 60px 60px;
+    text-align: left;
+}
+
+/* ==========================================================================
+   Global Responsive Media Queries
+   ========================================================================== */
+
+/* Tablet / Large Scaling */
+@media (max-width: 1200px) {
+    header h1 {
+        font-size: 2.8rem;
+    }
+
+    .nav-grid {
+        gap: 20px;
+        padding: 0 20px;
+    }
+    
+    .image-container {
+        width: 180px;
+        height: 180px;
+    }
+
+    .nav-label {
+        font-size: 1.4rem;
+    }
+
+    .animal-name {
+        font-size: 1.1rem;
+    }
+}
+
+/* Sighting Gallery Tablet Scaling */
+@media (max-width: 1100px) {
+    .sighting-grid {
+        gap: 20px;
+    }
+    
+    .sighting-image-container {
+        width: 180px;
+        height: 320px;
+    }
+}
+
+/* Species Detail Tablet Scaling */
+@media (max-width: 900px) {
+    .species-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .detail-view {
+        padding: 40px 20px;
+    }
+}
+
+/* Global Mobile / Tablet Breakpoint */
 @media (max-width: 768px) {
+    /* Form Scaling */
+    .form-group {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .form-group label {
+        text-align: left;
+        font-size: 1.4rem;
+    }
+
+    /* Sighting Gallery Wrapping */
+    .sighting-grid {
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
+    .sighting-image-container {
+        width: 160px;
+        height: 280px;
+    }
+
+    /* Map View Scaling */
     .map-view-container {
         padding: 40px 20px;
     }
@@ -682,60 +631,7 @@ header h1 {
     }
 }
 
-
-.image-container {
-    width: 220px;
-    height: 220px;
-    border-radius: 40px;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-}
-
-.image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.animal-name {
-    color: var(--accent-pink);
-    font-size: 1.4rem;
-    font-weight: 400;
-}
-
-/* Responsive Labels */
-.mobile-label {
-    display: none;
-}
-
-/* Tablet / Desktop scaling */
-@media (max-width: 1200px) {
-    header h1 {
-        font-size: 2.8rem;
-    }
-
-    .nav-grid {
-        gap: 20px;
-        padding: 0 20px;
-    }
-    
-    .image-container {
-        width: 180px;
-        height: 180px;
-    }
-
-    .nav-label {
-        font-size: 1.4rem;
-    }
-
-    .animal-name {
-        font-size: 1.1rem;
-    }
-}
-
-/* Mobile Design Matching */
+/* Small Mobile Breakpoint (Pixel-Perfect Matching) */
 @media (max-width: 480px) {
     main {
         padding: 60px 10px;
@@ -746,6 +642,7 @@ header h1 {
         margin-bottom: 80px;
     }
 
+    /* Nav Grid Layout change for mobile */
     .nav-grid {
         display: flex;
         flex-direction: row;
@@ -759,28 +656,83 @@ header h1 {
     }
 
     .nav-label {
-        font-size: 0.95rem;
+        font-size: 1.4rem;
     }
 
-    .desktop-label {
-        display: none;
+    /* Species Detail Mobile Adjustments */
+    .detail-header h1 {
+        font-size: 2.5rem;
     }
 
-    .mobile-label {
-        display: block;
+    .species-image-large {
+        border-radius: 20px;
     }
 
-    .image-container {
-        width: 85px;
-        height: 85px;
-        border-radius: 18px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    .info-label {
+        font-size: 1.25rem;
     }
 
-    .animal-name {
-        font-size: 0.8rem;
-        max-width: 85px;
-        line-height: 1.2;
+    .meta-value {
+        font-size: 1.2rem;
+    }
+
+    /* Sightings Mobile Adjustments */
+    .sightings-container h1 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+    }
+
+    .sighting-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .sighting-image-container {
+        width: 240px;
+        height: 400px;
+    }
+
+    .page-nav-controls {
+        padding: 0 20px;
+    }
+
+    .page-nav-btn {
+        width: 60px;
+        height: 45px;
+    }
+
+    /* Regional Map Mobile Adjustments */
+    .sightings-header {
+        padding: 40px 20px;
+    }
+
+    .sightings-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .maps-grid {
+        flex-direction: column;
+        gap: 40px;
+        padding: 20px;
+    }
+
+    .map-container {
+        width: 220px;
+        height: 220px;
+        border-radius: 110px; /* Circular maps on mobile per design */
+    }
+
+    .map-label {
+        font-size: 1.1rem;
+    }
+
+    .bottom-controls {
+        padding: 20px;
+    }
+
+    .bottom-back-btn {
+        width: 45px;
+        height: 45px;
     }
 }
-

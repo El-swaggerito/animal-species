@@ -1,25 +1,40 @@
+<!-- 
+  File: map-detail.html
+  Purpose: Detailed map view page for sightings.
+  Functionality: Displays three circular maps of specific Scottish regions:
+    - Map of Cairngorms
+    - Scotland Borders
+    - Scottish Highlands
+  Includes navigation back to the main map view and the home page.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Map Of Sightings - Scottish Mammal Observations</title>
+    <!-- Links to the shared external CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="sightings-page">
+    <!-- Overlay placeholder for background effects -->
     <div class="overlay"></div>
     <main class="sightings-container">
+        <!-- Top Navigation: Link back to Home Page -->
         <header class="sightings-header">
             <a href="index.html" class="home-link-top">
                 <div class="back-arrow">
                     <img src="images/homepage arrow.png" alt="Home">
                 </div>
+                <!-- Label hidden on desktop via CSS, visible on mobile -->
                 <span>Home Page</span>
             </a>
             <h1>Map Of Sightings</h1>
         </header>
 
+        <!-- Regional Maps Grid: Each item contains a map image and a descriptive label -->
         <section class="maps-grid">
+            <!-- Cairngorms Region -->
             <div class="map-item">
                 <div class="map-container">
                     <img src="images/sightings/Map of Cairngorms.png" alt="Map of Cairngorms">
@@ -27,6 +42,7 @@
                 <span class="map-label">Map of Cairngorms</span>
             </div>
 
+            <!-- Scotland Borders Region -->
             <div class="map-item">
                 <div class="map-container">
                     <img src="images/sightings/Scotland Borders.png" alt="Scotland Borders">
@@ -34,6 +50,7 @@
                 <span class="map-label">Scotland Borders</span>
             </div>
 
+            <!-- Scottish Highlands Region -->
             <div class="map-item">
                 <div class="map-container">
                     <img src="images/sightings/Scottish Highlands.png" alt="Scottish Highlands">
@@ -42,11 +59,6 @@
             </div>
         </section>
 
-        <div class="bottom-controls">
-            <a href="map-view.html" class="bottom-back-btn">
-                <img src="images/left.png" alt="Back">
-            </a>
-        </div>
     </main>
 </body>
 </html>
