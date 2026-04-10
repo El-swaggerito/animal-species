@@ -47,13 +47,6 @@ body {
     position: relative;
 }
 
-/* Specific background for mobile devices to ensure better composition */
-@media (max-width: 480px) {
-    .home-page, .species-page, .map-view-page, .sightings-page, .search-page {
-        background-image: url('images/mobile-bg.png');
-    }
-}
-
 /* Hidden by default, can be toggled for dark mode or specific page effects */
 .overlay {
     display: none;
